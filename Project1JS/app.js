@@ -8,8 +8,10 @@ window.addEventListener('load', ()=> {
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-            const api = `https://api.weatherbit.io/v2.0/current?${lat}&${long}&key=6a946beeb18042fa9ea6362592f04763`
+            const proxy = 'https://cors-anywhere.herokuapp.com';
+            const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=723554c5ccd52d5e9d82d54d042f7a9c`;
 
+//Grab data from API and return
             fetch(api) 
                 .then(response =>{
                     return response.json();

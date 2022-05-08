@@ -19,8 +19,10 @@ window.addEventListener('load', ()=> {
                 .then(data =>{
                 console.log(data);
                 const {temp} = data.main;
+                const {country} = data.sys;
                 //Set DOM Elements from the API
                 tempDegree.textContent = temp;
+                locationTimezone.textContent = country;
                 });
             });
         }

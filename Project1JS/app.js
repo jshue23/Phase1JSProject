@@ -20,10 +20,20 @@ window.addEventListener('load', ()=> {
                 console.log(data);
                 const {temp} = data.main;
                 const {country} = data.sys;
+                const {icon} = data.weather;
                 //Set DOM Elements from the API
                 tempDegree.textContent = temp;
                 locationTimezone.textContent = country;
+                //Set Icon 
+                setIcons(icon, document.querySelector(".icon"));
                 });
             });
         }
+
+    function setIcons(icon, iconID) {
+        const skycons = new skycons({color: "white"});
+        const currentIcon = icon.replace(/-/g, " ").toUpperCase();
+        skycons.play();
+        return skycons.set(iconID, skycons[currentIcon]);
+    }
 });

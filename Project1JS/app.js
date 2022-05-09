@@ -19,47 +19,44 @@ window.addEventListener('load', ()=> {
                 })
                 .then(data =>{
                 console.log(data);
-                //Object destructuring, extracting data from API and store it in variable names
+//Object destructuring, extracting data from API and store it in variable names
                 const {temp} = data.main;
                 const {country} = data.sys;
                 const {description, id, main} = data.weather[0];
-    
-                //Set DOM Elements from the API
+//Set DOM Elements from the API
                 tempDegree.textContent = temp;
                 locationTimezone.textContent = country;
                 tempDescription.textContent = description;
-                });
-            });
-        }
 
-        
-    window.onload = function iconDisplay() {
-    // Calling skycons variables
-        let skycons1 = new Skycons({"color": "white"});
-    //Display and play icon according to API's weather conditions
-        skycons1.add(document.getElementById("icon1", Skycons.Rain));
-            if (id < 250){ 
-                skycons1.set("icon1", Skycons.RAIN)
-            } 
-            else if (id < 350){
-                skycons1.set("icon1", Skycons.RAIN)
-            }
-            else if (id < 550){
-                skycons1.set("icon1", Skycons.RAIN)
-            }
-            else if (id < 650){
-                skycons1.set("icon1", Skycons.SNOW)
-            }
-            else if (id < 800){
-                skycons1.set("icon1", Skycons.FOG)
-            }
-            else if (id === 800){
-                skycons1.set("icon1", Skycons.CLEAR_DAY)
-            }
-            else if (id > 800){
-                skycons5.set("icon1S", Skycons.CLOUDY)
-            }
-            skycons1.play();
-    }      
-    
+window.addEventListener('load', ()=> {
+//Calling skycons variable
+            const skycons = new skycons({color: "white"});
+//Display and play icon according to API's weather conditions
+                skycons.add(document.getElementById("icon1", skycons.Rain));
+                if (id < 250){ 
+                skycons.set("icon1", skycons.RAIN)
+                skycons.play();
+                } 
+                else if (id < 350){
+                skycons.set("icon1", skycons.RAIN)
+                }
+                else if (id < 550){
+                skycons.set("icon1", skycons.RAIN)
+                }
+                else if (id < 650){
+                skycons.set("icon1", skycons.SNOW)
+                }
+                else if (id < 800){
+                skycons.set("icon1", skycons.FOG)
+                }
+                else if (id === 800){
+                skycons.set("icon1", skycons.CLEAR_DAY)
+                }
+                else if (id > 800){
+                skycons.set("icon1", skycons.CLOUDY)
+                }
+            }      
+        )});
+    });
+}
 });

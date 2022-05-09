@@ -5,6 +5,8 @@ window.addEventListener('load', ()=> {
     let tempDescription = document.querySelector(".temp-description")
     let tempDegree = document.querySelector(".temp-degree"); 
     let locationTimezone = document.querySelector(".location-timezone");
+    let tempIcon = document.getElementById("temp_icon");
+    let iconFile;
 
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position => {
@@ -27,36 +29,28 @@ window.addEventListener('load', ()=> {
                 tempDegree.textContent = temp;
                 locationTimezone.textContent = country;
                 tempDescription.textContent = description;
-
-window.addEventListener('load', ()=> {
-//Calling skycons variable
-            const skycons = new skycons({color: "white"});
-//Display and play icon according to API's weather conditions
-                skycons.add(document.getElementById("icon1", skycons.Rain));
                 if (id < 250){ 
-                skycons.set("icon1", skycons.RAIN)
-                skycons.play();
+                tempIcon.src = './icons/thunder.svg'
                 } 
                 else if (id < 350){
-                skycons.set("icon1", skycons.RAIN)
+                tempIcon.src = './icons/drizzle.svg'
                 }
                 else if (id < 550){
-                skycons.set("icon1", skycons.RAIN)
+                tempIcon.src = './icons/rain.svg'
                 }
                 else if (id < 650){
-                skycons.set("icon1", skycons.SNOW)
+                tempIcon.src = './icons/snow.svg'
                 }
                 else if (id < 800){
-                skycons.set("icon1", skycons.FOG)
+                tempIcon.src = './icons/atmosphere.svg'
                 }
                 else if (id === 800){
-                skycons.set("icon1", skycons.CLEAR_DAY)
+                tempIcon.src = './icons/sunny.svg'
                 }
                 else if (id > 800){
-                skycons.set("icon1", skycons.CLOUDY)
+                tempIcon.src = './icons/cloudy.svg'
                 }
-            }      
-        )});
+        });
     });
 }
 });

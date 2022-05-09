@@ -29,6 +29,7 @@ window.addEventListener('load', ()=> {
                 tempDegree.textContent = temp;
                 locationTimezone.textContent = country;
                 tempDescription.textContent = description;
+                tempDegree.textContent = Math.round(temp-0.1)
                 if (id < 250){ 
                 tempIcon.src = './icons/thunder.svg'
                 } 

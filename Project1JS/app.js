@@ -19,9 +19,11 @@ window.addEventListener('load', ()=> {
                 })
                 .then(data =>{
                 console.log(data);
+                //Object destructuring, extracting data from API and store it in variable names
                 const {temp} = data.main;
                 const {country} = data.sys;
-                const {description} = data.weather[0];
+                const {description, id, main} = data.weather[0];
+    
                 //Set DOM Elements from the API
                 tempDegree.textContent = temp;
                 locationTimezone.textContent = country;
@@ -31,11 +33,4 @@ window.addEventListener('load', ()=> {
                 });
             });
         }
-
-    function setIcons(icon, iconID) {
-        const skycons = new skycons({color: "white"});
-        const currentIcon = description.replace(/ /g, "_").toUpperCase();
-        skycons.play();
-        return skycons.set(iconID, skycons[currentIcon]);
-    }
 });

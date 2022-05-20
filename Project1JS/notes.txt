@@ -1,0 +1,42 @@
+|| REVISION ||
+Data types: 
+    - string, boolean, number, undefined, null
+
+Data structures: 
+    - Object: represent characteristics of a 'thing' in your code. E.g. a person, car, game character
+        let person = { 
+            name: 'Jordan',
+            age: 23,
+            isAlive: true,
+        };
+            delete person.age keyword to remove property 
+            person.hobbies to add keyword
+
+    - Array: store multiple items in one variable. Usually of the same data type. E.g. list of countries or foods.
+        let countries= ['Australia', 'Japan', 'Malaysia', 'Africa', 'France'];
+            // push() - Adds item(s) to the end of an array
+            // pop() - Removes the last item from an array
+            // unshift() - Adds item(s) to the beginning of an array
+            // shift() - Removes the first item from an array
+
+this.keyword: references the object that is executin the current function
+
+== compares the value 
+=== compares the value AND the data type (stricter)
+
+null and undefined both represent EMPTY values
+undefined = variable is declared but no value was defined
+null = is an assigned value and means nothing     
+
+synchronous: blocks operations until task is completed
+asynchonous: allows operations to execute without blocking other operations
+
+get: use get when RECEIVING data (no changes)
+post: use when sending data and updating
+
+JSON - JavaScript Object Notation: A format that will display data that is easier to read (e.g. data from API)
+
+let, var, const: 
+let and const are block-scoped.
+var is function or global-scoped. Accessible everywhere.
+

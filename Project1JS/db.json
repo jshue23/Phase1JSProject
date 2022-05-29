@@ -1,5 +1,19 @@
 {
-    "saveWeather": [
-      { "id": 1, "temperature": "30", "date": "12 May 2022" }
-    ]
-  }
+  "saveWeather": [
+    {
+      "id": 1,
+      "temperature": "30",
+      "date": "12/5/2022"
+    },
+    {
+      "temperature": {},
+      "date": "5/30/2022",
+      "id": 3
+    },
+    {
+      "temperature": "",
+      "date": "5/30/2022",
+      "id": 4
+    }
+  ]
+}

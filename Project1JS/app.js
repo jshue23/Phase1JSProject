@@ -2,18 +2,18 @@
 window.addEventListener('load', () => {
     let long;
     let lat;
-    let tempDescription = document.querySelector(".temp-description")
-    let tempDegree = document.querySelector(".temp-degree");
-    let locationTimezone = document.querySelector(".location-timezone");
-    let tempIcon = document.getElementById("temp_icon");
-    let saveData = document.querySelector(".save-data");
+    const tempDescription = document.querySelector(".temp-description")
+    const tempDegree = document.querySelector(".temp-degree");
+    const locationTimezone = document.querySelector(".location-timezone");
+    const tempIcon = document.getElementById("temp_icon");
+    const saveData = document.querySelector(".save-data");
     let iconFile;
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
-            const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=723554c5ccd52d5e9d82d54d042f7a9c&units=metric`;
+            var api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=723554c5ccd52d5e9d82d54d042f7a9c&units=metric`;
 
             //Grab data from API and return
             fetch(api)
@@ -29,7 +29,7 @@ window.addEventListener('load', () => {
                     const {
                         country
                     } = data.sys;
-                    const {
+                    var {
                         description,
                         id,
                         main
@@ -63,20 +63,46 @@ window.addEventListener('load', () => {
             .then(data => {
                 console.log(data);
                 const list = document.querySelector(".save-data");
-
                 data.forEach(element => {
                     const li = document.createElement("li");
-                    li.innerHTML = `${element.date} ${element.temperature}°C `
-
+                    li.innerHTML = `${element.date} : ${element.temperature}°C `
                     list.append(li);
                 });
-                
-
-
             })
     }
-    var today = new Date();
-    console.log(today);
-       
+        var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var today = new Date();
+        console.log(today.toLocaleDateString("en-US"));
+//POST
+        const savedEntry = {
+            temperature: '',
+            date: '',
+        };
+        savedEntry.temperature = tempDegree.textContent,
+        savedEntry.date = today.toLocaleDateString("en-US")
 
+        const optionsPost = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(savedEntry),
+         };
+         const addEntry = document.querySelector(".save-button");
+         addEntry.addEventListener('click', () => {
+            fetch('http://localhost:3000/saveWeather', optionsPost)
+         })
+
+//DELETE
+         const optionsDelete = {
+             method: 'DELETE',
+             headers: {
+                 'Content-Type': 'application/json'
+             }
+         }
+         const deleteEntry = document.querySelector(".delete-button");
+         deleteEntry.addEventListener('click', () => {
+            fetch('http://localhost:3000/saveWeather', optionsDelete)
+         })
+         console.log(tempDegree.textContent);
 })

@@ -1,3 +1,5 @@
+// json-server --watch db.json
+
 //Grab user's location on webpage load
 window.addEventListener('load', () => {
     let long;
@@ -29,7 +31,7 @@ window.addEventListener('load', () => {
                     const {
                         country
                     } = data.sys;
-                    var {
+                    const {
                         description,
                         id,
                         main
@@ -54,7 +56,44 @@ window.addEventListener('load', () => {
                     } else if (id > 800) {
                         tempIcon.src = './icons/cloudy.svg'
                     }
+                    const savedEntry = {
+                        temperature: '',
+                        date: '',
+                    };
+//POST
+var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var today = new Date();
+        console.log(today.toLocaleDateString("en-US"));
+                    savedEntry.temperature = tempDegree.textContent,
+                    savedEntry.date = today.toLocaleDateString("en-US")
+                    console.log(tempDegree.textContent);
+                    const optionsPost = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(savedEntry),
+                     };
+                     const addEntry = document.querySelector(".save-button");
+                     addEntry.addEventListener('click', () => {
+                        fetch('http://localhost:3000/saveWeather', optionsPost)
                 });
+                fetch("http://localhost:3000/saveWeather")
+        .then((response) => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            let lastElement = data[data.length - 1];
+            console.log(lastElement);
+            const list = document.querySelector(".save-data");
+            displayEntry = document.querySelector(".add-button");
+                displayEntry.addEventListener('click', () => {
+                    const li = document.createElement("li");
+                    li.innerHTML = lastElement;
+                    list.append(li);
+            })
+                 })
         });
         fetch("http://localhost:3000/saveWeather")
             .then((response) => {
@@ -66,43 +105,13 @@ window.addEventListener('load', () => {
                 data.forEach(element => {
                     const li = document.createElement("li");
                     li.innerHTML = `${element.date} : ${element.temperature}°C `
-                    list.append(li);
-                });
-            })
+                        //DELETE
+                        const deleteEntry = document.querySelector(".delete-button"); 
+                        deleteEntry.addEventListener('click', () => {
+                        list.dependChild(li);
+                })
+            });
+        })
+    })
     }
-        var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        var today = new Date();
-        console.log(today.toLocaleDateString("en-US"));
-//POST
-        const savedEntry = {
-            temperature: '',
-            date: '',
-        };
-        savedEntry.temperature = tempDegree.textContent,
-        savedEntry.date = today.toLocaleDateString("en-US")
-
-        const optionsPost = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(savedEntry),
-         };
-         const addEntry = document.querySelector(".save-button");
-         addEntry.addEventListener('click', () => {
-            fetch('http://localhost:3000/saveWeather', optionsPost)
-         })
-
-//DELETE
-         const optionsDelete = {
-             method: 'DELETE',
-             headers: {
-                 'Content-Type': 'application/json'
-             }
-         }
-         const deleteEntry = document.querySelector(".delete-button");
-         deleteEntry.addEventListener('click', () => {
-            fetch('http://localhost:3000/saveWeather', optionsDelete)
-         })
-         console.log(tempDegree.textContent);
 })

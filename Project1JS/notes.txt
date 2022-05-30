@@ -40,3 +40,9 @@ let, var, const:
 let and const are block-scoped.
 var is function or global-scoped. Accessible everywhere.
 
+function deleteData(item, url) {
+  return fetch(url + '/' + item, {
+    method: 'delete'
+  })
+  .then(response => response.json());
+}

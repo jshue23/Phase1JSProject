@@ -1,11 +1,6 @@
 {
   "saveWeather": [
     {
-      "id": 1,
-      "temperature": "30",
-      "date": "12/5/2022"
-    },
-    {
       "temperature": "12",
       "date": "5/30/2022",
       "id": 2
@@ -44,6 +39,36 @@
       "temperature": "12",
       "date": "5/31/2022",
       "id": 9
+    },
+    {
+      "temperature": "13",
+      "date": "6/2/2022",
+      "id": 10
+    },
+    {
+      "temperature": "13",
+      "date": "6/2/2022",
+      "id": 11
+    },
+    {
+      "temperature": "13",
+      "date": "6/2/2022",
+      "id": 12
+    },
+    {
+      "temperature": "11",
+      "date": "6/2/2022",
+      "id": 13
+    },
+    {
+      "temperature": "11",
+      "date": "6/2/2022",
+      "id": 14
+    },
+    {
+      "temperature": "11",
+      "date": "6/2/2022",
+      "id": 15
     }
   ]
 }

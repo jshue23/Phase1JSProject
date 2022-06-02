@@ -60,6 +60,8 @@ window.addEventListener('load', () => {
                         temperature: '',
                         date: '',
                     };
+
+                    
 //POST
 var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         var today = new Date();
@@ -84,13 +86,11 @@ var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numer
         })
         .then(data => {
             console.log(data);
-            let lastElement = data[data.length - 1];
-            console.log(lastElement);
             const list = document.querySelector(".save-data");
             displayEntry = document.querySelector(".add-button");
-                displayEntry.addEventListener('click', () => {
+                data.forEach(eLement => {
                     const li = document.createElement("li");
-                    li.innerHTML = lastElement;
+                    li.innerHTML = `${eLement.date} : ${eLement.temperature}°C `;
                     list.append(li);
             })
                  })
@@ -101,17 +101,18 @@ var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numer
             })
             .then(data => {
                 console.log(data);
-                const list = document.querySelector(".save-data");
-                data.forEach(element => {
-                    const li = document.createElement("li");
-                    li.innerHTML = `${element.date} : ${element.temperature}°C `
-                        //DELETE
-                        const deleteEntry = document.querySelector(".delete-button"); 
-                        deleteEntry.addEventListener('click', () => {
-                        list.dependChild(li);
-                })
+                const optionsDelete = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                }
+                document.querySelector(".btn").onclick =  function() {
+                    var idNumber = document.querySelector(".userInputNumber").value;
+                    console.log(idNumber); 
+                    fetch('http://localhost:3000/saveWeather/:id=${idNumber}', optionsDelete);
+                }
             });
         })
-    })
     }
 })
